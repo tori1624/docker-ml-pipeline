@@ -4,7 +4,7 @@
 import os
 from deepchecks_client import DeepchecksClient
 
-token = 'bGVleWhAYjJlbi5jb20=.FuQe4XIzcfxPKr5dXEzDdA'
+token = {token}
 host = 'http://localhost'
 
 dc_client = DeepchecksClient(host=host, token=token)
@@ -79,7 +79,6 @@ prod_data['issue_d'].unique()
 prod_predictions = model.predict(prod_data[train_dataset.features].fillna('NONE'))
 prod_prediction_probas = model.predict_proba(prod_data[train_dataset.features].fillna('NONE'))
 
-### 오류 발생
 model_version.log_batch(sample_ids=prod_data['id'],
                         data=prod_data.drop(['issue_d', 'id', 'loan_status'], axis=1),
                         timestamps=(prod_data['issue_d'].astype(int) // 1e9).astype(int),
